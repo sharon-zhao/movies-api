@@ -12,8 +12,10 @@ const errorHandler = require('./lib/error_handler')
 const replaceToken = require('./lib/replace_token')
 const requestLogger = require('./lib/request_logger')
 
-// require database configuration logic
-// `db` will be the actual Mongo URI as a string
+const bookRoutes = require('./app/routes/bookRoutes')
+const commentRoutes = require('./app/routes/commentRoutes')
+const personRoutes = require('./app/routes/personRoutes')
+
 const db = require('./config/db')
 
 // require configured passport authentication middleware
@@ -50,9 +52,6 @@ app.use(replaceToken)
 // register passport authentication middleware
 app.use(auth)
 
-// add `express.json` middleware which will parse JSON requests into
-// JS objects before they reach the route files.
-// The method `.use` sets up middleware for the Express application
 app.use(express.json())
 // this parses requests sent by `$.ajax`, which use a different content type
 app.use(express.urlencoded({ extended: true }))
@@ -62,14 +61,17 @@ app.use(requestLogger)
 
 // register route files
 app.use(exampleRoutes)
+
 app.use(userRoutes)
 
-// register error handling middleware
-// note that this comes after the route middlewares, because it needs to be
-// passed any error messages from them
+app.use(personRoutes)
+
+app.use(commentRoutes)
+
+app.use(bookRoutes)
+
 app.use(errorHandler)
 
-// run API on designated port (4741 in this case)
 app.listen(port, () => {
   console.log('listening on port ' + port)
 })

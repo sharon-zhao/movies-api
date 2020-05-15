@@ -1,5 +1,4 @@
 'use strict'
-
 // creating a base name for the mongodb
 const mongooseBaseName = 'movies-api'
 
