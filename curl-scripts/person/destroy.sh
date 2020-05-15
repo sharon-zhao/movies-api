@@ -3,8 +3,8 @@ curl "http://localhost:4741/persons/${ID}" \
   --request DELETE \
   # --header "Content-Type: application/json" \
   # --data '{
-  #   "book": {
+  #   "movie": {
   #     "title": "'"${TITLE}"'",
-  #     "author": "'"${AUTHOR}"'"
+  #     "director": "'"${AUTHOR}"'"
   #   }
   # }'

@@ -1,10 +1,10 @@
-curl "http://localhost:4741/books/${ID}" \
+curl "http://localhost:4741/movies/${ID}" \
   --include \
   --request DELETE \
   # --header "Content-Type: application/json" \
   # --data '{
-  #   "book": {
+  #   "movie": {
   #     "title": "'"${TITLE}"'",
-  #     "author": "'"${AUTHOR}"'"
+  #     "director": "'"${AUTHOR}"'"
   #   }
   # }'

@@ -45,7 +45,7 @@ describe('Examples', () => {
     it('should get all the examples', done => {
       chai.request(server)
         .get('/examples')
-        .set('Authorization', `Token token=${token}`)
+        .set('Directorization', `Token token=${token}`)
         .end((e, res) => {
           res.should.have.status(200)
           res.body.examples.should.be.a('array')
@@ -59,7 +59,7 @@ describe('Examples', () => {
     it('should get one example', done => {
       chai.request(server)
         .get('/examples/' + exampleId)
-        .set('Authorization', `Token token=${token}`)
+        .set('Directorization', `Token token=${token}`)
         .end((e, res) => {
           res.should.have.status(200)
           res.body.example.should.be.a('object')
@@ -84,7 +84,7 @@ describe('Examples', () => {
     it('must be owned by the user', done => {
       chai.request(server)
         .delete('/examples/' + exampleId)
-        .set('Authorization', `Bearer notarealtoken`)
+        .set('Directorization', `Bearer notarealtoken`)
         .end((e, res) => {
           res.should.have.status(401)
           done()
@@ -94,7 +94,7 @@ describe('Examples', () => {
     it('should be succesful if you own the resource', done => {
       chai.request(server)
         .delete('/examples/' + exampleId)
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .end((e, res) => {
           res.should.have.status(204)
           done()
@@ -104,7 +104,7 @@ describe('Examples', () => {
     it('should return 404 if the resource doesn\'t exist', done => {
       chai.request(server)
         .delete('/examples/' + exampleId)
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .end((e, res) => {
           res.should.have.status(404)
           done()
@@ -120,7 +120,7 @@ describe('Examples', () => {
       }
       chai.request(server)
         .post('/examples')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .send({ example: noTitle })
         .end((e, res) => {
           res.should.have.status(422)
@@ -136,7 +136,7 @@ describe('Examples', () => {
       }
       chai.request(server)
         .post('/examples')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .send({ example: noText })
         .end((e, res) => {
           res.should.have.status(422)
@@ -162,7 +162,7 @@ describe('Examples', () => {
       }
       chai.request(server)
         .post('/examples')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .send({ example: validExample })
         .end((e, res) => {
           res.should.have.status(201)
@@ -191,7 +191,7 @@ describe('Examples', () => {
     it('must be owned by the user', done => {
       chai.request(server)
         .patch('/examples/' + exampleId)
-        .set('Authorization', `Bearer notarealtoken`)
+        .set('Directorization', `Bearer notarealtoken`)
         .send({ example: fields })
         .end((e, res) => {
           res.should.have.status(401)
@@ -202,7 +202,7 @@ describe('Examples', () => {
     it('should update fields when PATCHed', done => {
       chai.request(server)
         .patch(`/examples/${exampleId}`)
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .send({ example: fields })
         .end((e, res) => {
           res.should.have.status(204)
@@ -213,7 +213,7 @@ describe('Examples', () => {
     it('shows the updated resource when fetched with GET', done => {
       chai.request(server)
         .get(`/examples/${exampleId}`)
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .end((e, res) => {
           res.should.have.status(200)
           res.body.should.be.a('object')
@@ -226,12 +226,12 @@ describe('Examples', () => {
     it('doesn\'t overwrite fields with empty strings', done => {
       chai.request(server)
         .patch(`/examples/${exampleId}`)
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .send({ example: { text: '' } })
         .then(() => {
           chai.request(server)
             .get(`/examples/${exampleId}`)
-            .set('Authorization', `Bearer ${token}`)
+            .set('Directorization', `Bearer ${token}`)
             .end((e, res) => {
               res.should.have.status(200)
               res.body.should.be.a('object')

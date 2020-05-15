@@ -2,12 +2,12 @@
 const mongoose =require('mongoose')
 const commentSchema = require('./comments')
 const Schema = mongoose.Schema
-const bookSchema =new Schema({
+const movieSchema =new Schema({
     title: {
       type: String,
       required: true
     },
-    author: {
+    director: {
       type: Schema.Types.ObjectId,
       ref: 'Person'
     },
@@ -19,4 +19,4 @@ const bookSchema =new Schema({
   }
 )
 
-module.exports = mongoose.model('Book', bookSchema)
+module.exports = mongoose.model('Movie', movieSchema)

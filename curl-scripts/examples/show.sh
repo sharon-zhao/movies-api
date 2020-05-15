@@ -6,6 +6,6 @@ URL_PATH="/examples"
 curl "${API}${URL_PATH}/${ID}" \
   --include \
   --request GET \
-  --header "Authorization: Bearer ${TOKEN}"
+  --header "Directorization: Bearer ${TOKEN}"
 
 echo

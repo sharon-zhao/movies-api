@@ -129,7 +129,7 @@ describe('Users', () => {
     it('the token should allow you to GET /examples', done => {
       chai.request(server)
         .get('/examples')
-        .set('Authorization', `Token token=${token}`)
+        .set('Directorization', `Token token=${token}`)
         .end((e, res) => {
           res.should.have.status(200)
           res.body.should.have.property('examples')
@@ -157,7 +157,7 @@ describe('Users', () => {
     it('fails when the wrong password is provided', done => {
       chai.request(server)
         .patch('/change-password')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .send(badChangePwParams)
         .end((e, res) => {
           res.should.have.status(422)
@@ -168,7 +168,7 @@ describe('Users', () => {
     it('fails when the new password is an empty string', done => {
       chai.request(server)
         .patch('/change-password')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .send({ passwords: { old: '54321', new: '' } })
         .end((e, res) => {
           res.should.have.status(422)
@@ -179,7 +179,7 @@ describe('Users', () => {
     it('is successful and changes the password', done => {
       chai.request(server)
         .patch('/change-password')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .send(changePwParams)
         .end((e, res) => {
           res.should.have.status(204)
@@ -200,7 +200,7 @@ describe('Users', () => {
     it('returns 204', done => {
       chai.request(server)
         .delete('/sign-out')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Directorization', `Bearer ${token}`)
         .end((e, res) => {
           res.status.should.eql(204)
           done()
