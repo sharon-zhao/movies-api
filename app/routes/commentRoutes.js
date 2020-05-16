@@ -13,10 +13,8 @@ const handle404 = customErrors.handle404
 router.post('/comments', (req, res, next) => {
   const comment = req.body.comment
   const movieId = comment.movie_id
-
   Movie.findById(movieId)
-    // .then(handle404)
-    .then(movie => {
+    .then((movie) => {
        movie.comments.push(comment)
        return movie.save()
     })
@@ -46,14 +44,6 @@ router.delete('/comments/:movie_id/:comment_id', (req, res, next) => {
   Movie.findById(movie_id)
     .then(handle404)
     .then(movie =>{
-
-    // console.log(movie.comments.id(comment_id)) =>result as following
-    //{ _id: 5ebcaf5e8000cc6135ceb9d6,
-  //    title: '22',
-//      body: '22',
-  //    commenter: 5eb61e6e2e101c5ca0f2f9c0,
-  //    createdAt: 2020-05-14T02:39:26.337Z,
-  //    updatedAt: 2020-05-14T14:20:50.335Z }
     movie.comments.id(comment_id).remove()
     movie.save()
 

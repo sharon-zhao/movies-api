@@ -43,12 +43,17 @@ router.get('/movies/:id', (req, res, next) => {
 router.post('/movies', (req, res, next) => {
   //get movie data
   const movie = req.body.movie
+  const title = movie.title
+  const author = movie.author
   //save to mongodb
   Movie.create(movie)
-
-    .then(movie => res.status(201).json( { movie: movie } ))
-    // on error respond with 500 and error message
+    // .populate('director')
+    .then((movie) => {
+      return movie.populate('director').execPopulate()
+      })
+    .then(movie =>res.status(201).json( { movie: movie } ))
     .catch(next)
+    //
 })
 // Destroy: DELETE /movies/:id delete the movie
 router.delete('/movies/:id', (req, res, next) => {
