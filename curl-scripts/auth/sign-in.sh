@@ -1,9 +1,5 @@
-#!/bin/bash
 
-API="https://radiant-sands-13244.herokuapp.com"
-URL_PATH="/sign-in"
-
-curl "${API}${URL_PATH}" \
+curl "http://localhost:4741/sign-in" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
@@ -13,5 +9,3 @@ curl "${API}${URL_PATH}" \
       "password": "'"${PASSWORD}"'"
     }
   }'
-
-echo

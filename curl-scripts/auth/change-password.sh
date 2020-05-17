@@ -1,18 +1,12 @@
-#!/bin/bash
 
-API="http://localhost:4741"
-URL_PATH="/change-password"
-
-curl "${API}${URL_PATH}/" \
+curl "http://localhost:4741/change-password" \
   --include \
   --request PATCH \
-  --header "Directorization: Token token=${TOKEN}" \
+  --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
     "passwords": {
-      "old": "'"${OLDPW}"'",
-      "new": "'"${NEWPW}"'"
+      "new": "'"${NEW}"'",
+      "old": "'"${OLD}"'"
     }
   }'
-
-echo
