@@ -32,13 +32,13 @@ router.get('/movies/:id', (req, res, next) => {
   .populate('comments.commenter')
     // handle 404 error if no movie found
     .then(handle404)
-    // .then(movies => movies.map(movie=>movie.toObject()))
-    // respond with json of the movie
-    // use mongoose toObject on movie to include virtuals
+    // .then(movies => console.log(movies))
+
     .then(movie => res.json( { movie: movie.toObject() } ))
     // on error continue to error handling middleware
     .catch(next)
 })
+
 // Create: POST /movies save the movie data
 router.post('/movies', (req, res, next) => {
   //get movie data

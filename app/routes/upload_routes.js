@@ -6,13 +6,15 @@ const multer = require('multer')
 const upload = multer({ dest: 'uploads/'})
 const s3Upload = require('../../lib/s33Upload')
 const Upload = require('../models/upload')
+const User = require('./../models/user')
+const customErrors = require('../../lib/customError')
+const handle404 = customErrors.handle404
+
 //
 router.post('/uploads', upload.single('file'), (req, res, next) => {
-  console.log(req.file)
+  // console.log(req.file)
     s3Upload(req.file)
      .then(responseData => {
-
-       console.log(responseData)
 
       return Upload.create({
       //use the title from the input whose name is title
@@ -26,13 +28,24 @@ router.post('/uploads', upload.single('file'), (req, res, next) => {
 })
 
 //
-// router.get('/uploads', (req, res, next) => {
-//     Upload.find()
-//         .then(uploads => uploads.map(upload => upload.toObject()))
-//         .then(uploads => res.json({ uploads }))
-//         .catch(console.error)
-// })
+router.get('/uploads', (req, res, next) => {
+    Upload.find()
+       // .then(uploads=> console.log(uploads))
+        .then(uploads => uploads.map(upload => upload.toObject()))
+        .then(uploads => res.json({ uploads }))
+        .catch(console.error)
+})
 
+
+router.delete('/uploads/:id', (req, res, next) => {
+   const id = req.params.id
+   console.log(id)
+    Upload.findById(id)
+     .then(handle404)
+     .then(image=>image.deleteOne())
+     .then(() => res.sendStatus(204))
+     .catch(next)
+})
 
 
 module.exports = router

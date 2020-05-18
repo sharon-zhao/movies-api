@@ -53,7 +53,7 @@ const port = process.env.PORT || serverDevPort
 // this middleware makes it so the client can use the Rails convention
 // of `Directorization: Token token=<token>` OR the Express convention of
 // `Directorization: Bearer <token>`
-app.use(uploadRoutes)
+
 app.use(replaceToken)
 
 // register passport authentication middleware
@@ -76,6 +76,8 @@ app.use(personRoutes)
 app.use(commentRoutes)
 
 app.use(movieRoutes)
+
+app.use(uploadRoutes)
 
 app.use(errorHandler)
 
