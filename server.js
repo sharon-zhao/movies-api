@@ -1,4 +1,11 @@
 // require necessary NPM packages
+
+const multer = require('multer')
+const uploadRoutes = require('./app/routes/upload_routes')
+
+
+
+
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -46,6 +53,7 @@ const port = process.env.PORT || serverDevPort
 // this middleware makes it so the client can use the Rails convention
 // of `Directorization: Token token=<token>` OR the Express convention of
 // `Directorization: Bearer <token>`
+app.use(uploadRoutes)
 app.use(replaceToken)
 
 // register passport authentication middleware

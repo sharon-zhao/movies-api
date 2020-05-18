@@ -39,7 +39,6 @@ router.post('/sign-up', (req, res, next) => {
 router.post('/sign-in', (req, res, next) => {
   // get the credentials from the request
   const credentials = req.body.credentials
-  console.log(credentials)
   const email = credentials.email
   const password = credentials.password
   let user
@@ -73,22 +72,22 @@ router.post('/sign-in', (req, res, next) => {
 // DELETE /sign-out
 router.delete('/sign-out', requireToken, (req, res, next) => {
   // find the user by token
-  console.log("user")
+
   const user = req.user
   user.token = crypto.randomBytes(16)
+  console.log(user.token)
   // save to mongodb
   user.save()
   // return 204
   .then(() => res.sendStatus(204))
   .catch(next)
 })
+
 // PATCH /change-password  requireToken
 router.patch('/change-password' ,requireToken, (req, res, next) => {
   const passwords = req.body.passwords
   const newPassword = passwords.new
-  console.log(newPassword)
   const oldPassword = passwords.old
-  console.log(oldPassword)
   const userId = req.user.id
   let user
 
