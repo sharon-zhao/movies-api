@@ -10,6 +10,7 @@
 
 This project looks not that difficult, but it contains a lot of tricky problems.
 Fist, the methods upload delete of the comment are not similar as the methods of movie and person, since the comment is subelement of movie. All the action of comment should under the parent scope of movie, if you want to delete the comment only by id of comment, you have to loop the movies object then filter the comment id. However, we only learned how to use forEach in array, how to loop object is tough problem.
+Second, change the background using upload image is the other challenge. The images upload to s3 database, in the beginning I am not quite understand how to use this database, so I don't know how to get the data. I recheck the step of upload image to figure out how to use it then write the router of getting image on the back-end.
 
 ### User Stories
 - Sign up, sign in, changepassword of my own account.
