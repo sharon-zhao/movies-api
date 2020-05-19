@@ -1,1 +1,1 @@
-curl "http://localhost:4741/uploads" --include
+curl "http://localhost:4741/uploads/${ID}" --include

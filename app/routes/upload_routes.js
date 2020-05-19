@@ -37,9 +37,17 @@ router.get('/uploads', (req, res, next) => {
 })
 
 
+router.get('/uploads/:id', (req, res, next) => {
+   const id = req.params.id
+    Upload.findById(id)
+     .then(handle404)
+     .then(image=>console.log(image))
+     .then(() => res.sendStatus(204))
+     .catch(next)
+})
+
 router.delete('/uploads/:id', (req, res, next) => {
    const id = req.params.id
-   console.log(id)
     Upload.findById(id)
      .then(handle404)
      .then(image=>image.deleteOne())
