@@ -6,6 +6,6 @@
     --data '{
       "movie": {
         "title": "'"${TITLE}"'",
-        "director": "'"${AUTHOR}"'"
+        "director": "'"${DIRECTORID}"'"
       }
     }'

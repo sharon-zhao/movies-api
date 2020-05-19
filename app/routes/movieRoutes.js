@@ -74,6 +74,7 @@ router.patch('/movies/:id', (req, res, next) => {
   const movieData = req.body.movie
   // fetching movie by its id
   Movie.findById(id)
+
     // handle 404 error if no movie found
     .then(handle404)
     // update movie

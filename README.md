@@ -1,4 +1,4 @@
-# Application Title: Personal movie collection library, which can make you create update delete and show your movies. The reason why I wanted to do this project is that I like to see movies, especially the Marvel movies
+# Application Title: Personal movie collection library, which can make you create update delete and show your movies. The reason why I wanted to do this project is that I like to see movies, especially the Marvel movies.
 
 ## Important Links
 
