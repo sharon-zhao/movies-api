@@ -4,10 +4,10 @@ const multer = require('multer')
 //create upload object by calling multer when we call multer
 //we can pass it an options object 'dest' specifies the folder to store the uploaded files
 const upload = multer({ dest: 'uploads/'})
-const s3Upload = require('../../lib/s33Upload')
-const Upload = require('../models/upload')
+const s3Upload = require('./../../lib/s33upload')
+const Upload = require('./../models/upload')
 const User = require('./../models/user')
-const customErrors = require('../../lib/customError')
+const customErrors = require('./../../lib/customError')
 const handle404 = customErrors.handle404
 
 //
