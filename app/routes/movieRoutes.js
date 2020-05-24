@@ -5,12 +5,16 @@ const express = require('express')
 const router = express.Router()
 // require movie model
 const Movie = require('./../models/movie')
-
+const passport = require('passport')
 // require custom error handlers
 const customErrors = require('./../../lib/customError')
+const customError = require('./../../lib/customErrors')
 const handle404 = customErrors.handle404
+const removeBlanks = require('./../../lib/remove_blank_fields')
+const requireToken = passport.authenticate('bearer', { session: false })
+const requireOwnership = customError.requireOwnership
 // Index: GET /movies return all the movies
-router.get('/movies', (req, res, next) => {
+router.get('/movies', requireToken, (req, res, next) => {
  // fetch all movies from mongodb
  Movie.find()
  .populate('director')
@@ -23,7 +27,7 @@ router.get('/movies', (req, res, next) => {
   .catch(next)
 })
 // Show: GET /movies/100 return a movie
-router.get('/movies/:id', (req, res, next) => {
+router.get('/movies/:id', requireToken, (req, res, next) => {
   // get id of movie from params
   const id = req.params.id
   // fetching movie by its id
@@ -40,8 +44,9 @@ router.get('/movies/:id', (req, res, next) => {
 })
 
 // Create: POST /movies save the movie data
-router.post('/movies', (req, res, next) => {
+router.post('/movies', requireToken, (req, res, next) => {
   //get movie data
+  req.body.movie.author = req.user._id
   const movie = req.body.movie
   const title = movie.title
   const author = movie.author
@@ -56,18 +61,21 @@ router.post('/movies', (req, res, next) => {
     //
 })
 // Destroy: DELETE /movies/:id delete the movie
-router.delete('/movies/:id', (req, res, next) => {
+router.delete('/movies/:id', requireToken, (req, res, next) => {
   const id = req.params.id
   Movie.findById(id)
     .then(handle404)
-    .then(movie => movie.deleteOne())
+    .then(movie => {
+      requireOwnership(req, movie)
+      movie.deleteOne()})
     .then(() => res.sendStatus(204))
     //
     .catch(next)
 })
 
 // Update: PATCH /movies/:id delete the movie
-router.patch('/movies/:id', (req, res, next) => {
+router.patch('/movies/:id', requireToken, removeBlanks, (req, res, next) => {
+  delete req.body.movie.author
   // get id of movie from params
   const id = req.params.id
   // get movie data from request
@@ -79,6 +87,7 @@ router.patch('/movies/:id', (req, res, next) => {
     .then(handle404)
     // update movie
     .then(movie => {
+      requireOwnership(req, movie)
       // updating movie object
       // with movieData
       Object.assign(movie, movieData)

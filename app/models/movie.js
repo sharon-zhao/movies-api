@@ -12,6 +12,11 @@ const movieSchema =new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Person'
     },
+    author: {
+      type:Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
     //if one comment no []
     comments: [commentSchema]
   },

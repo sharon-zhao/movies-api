@@ -3,6 +3,7 @@
     --include \
     --request PATCH \
     --header "Content-Type: application/json" \
+    --header "Authorization: Bearer ${TOKEN}" \
     --data '{
       "movie": {
         "title": "'"${TITLE}"'",

@@ -13,6 +13,11 @@ const personSchema = new Schema(
     lastName:{
       type:String,
       required:true
+    },
+    author: {
+      type:Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
     }
   },
   {

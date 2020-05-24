@@ -10,6 +10,11 @@ const uploadSchema = new Schema({
     imageUrl: {
         type: String,
         required: true
+    },
+    author: {
+      type:Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
     }
 }, {
     timestamps: true

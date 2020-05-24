@@ -75,7 +75,6 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
 
   const user = req.user
   user.token = crypto.randomBytes(16)
-  console.log(user.token)
   // save to mongodb
   user.save()
   // return 204
