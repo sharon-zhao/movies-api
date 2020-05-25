@@ -108,6 +108,7 @@ router.patch('/comments/:movie_id/:comment_id', requireToken, removeBlanks, (req
       // with movieData
       const comment = movie.comments.filter(comment => comment._id == comment_id)
       Object.assign(comment[0], commentData)
+      requireOwnership(req, comment)
       // save movie to mongodb
       return movie.save()
     })

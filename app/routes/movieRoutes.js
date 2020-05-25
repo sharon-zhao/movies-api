@@ -46,6 +46,8 @@ router.get('/movies/:id', requireToken, (req, res, next) => {
 // Create: POST /movies save the movie data
 router.post('/movies', requireToken, (req, res, next) => {
   //get movie data
+  console.log(req.body)
+  console.log(req.user)
   req.body.movie.author = req.user._id
   const movie = req.body.movie
   const title = movie.title
