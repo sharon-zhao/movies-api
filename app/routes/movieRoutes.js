@@ -18,7 +18,6 @@ router.get('/movies', requireToken, (req, res, next) => {
  // fetch all movies from mongodb
  Movie.find()
  .populate('director')
- .populate('comments.commenter')
   // use mongoose toObject on each movie to include virtuals
   .then(movies => movies.map(movie => movie.toObject()))
   // send response 200 with movies to client
@@ -33,7 +32,7 @@ router.get('/movies/:id', requireToken, (req, res, next) => {
   // fetching movie by its id
   Movie.findById(id)
   .populate('director')
-  .populate('comments.commenter')
+  // .populate('comments.commenter')
     // handle 404 error if no movie found
     .then(handle404)
     // .then(movies => console.log(movies))

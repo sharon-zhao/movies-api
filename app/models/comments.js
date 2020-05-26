@@ -14,10 +14,10 @@ const commentSchema = new Schema(
       type:String,
       required:true
     },
-   // commenter:{
-   //   type:Schema.Types.ObjectId,
-   //   ref: 'Person'
-   // },
+   commenter:{
+     type:String,
+     required: true
+   },
    author: {
      type:Schema.Types.ObjectId,
      ref: 'User',

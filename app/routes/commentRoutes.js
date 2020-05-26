@@ -67,7 +67,6 @@ router.delete('/comments/:comment_id', requireToken, (req, res, next) => {
   const comment_id = req.params.comment_id
 
   Movie.find()
-  .populate('comments.commenter')
 
   .then(movies => {
     // requireOwnership(req, movies)

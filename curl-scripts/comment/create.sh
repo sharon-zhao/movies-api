@@ -8,6 +8,7 @@ curl "http://localhost:4741/comments" \
     "comment": {
       "title": "'"${TITLE}"'",
       "body": "'"${BODY}"'",
-      "movie_id": "'"${MOVIEID}"'"
+      "movie_id": "'"${MOVIEID}"'",
+      "commenter": "'"${COMMENTER}"'"
     }
   }'
