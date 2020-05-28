@@ -17,7 +17,6 @@ const requireOwnership = customError.requireOwnership
 router.get('/movies', requireToken, (req, res, next) => {
  // fetch all movies from mongodb
  Movie.find()
- .populate('director')
   // use mongoose toObject on each movie to include virtuals
   .then(movies => movies.map(movie => movie.toObject()))
   // send response 200 with movies to client
@@ -31,8 +30,6 @@ router.get('/movies/:id', requireToken, (req, res, next) => {
   const id = req.params.id
   // fetching movie by its id
   Movie.findById(id)
-  .populate('director')
-  // .populate('comments.commenter')
     // handle 404 error if no movie found
     .then(handle404)
     // .then(movies => console.log(movies))
@@ -53,10 +50,6 @@ router.post('/movies', requireToken, (req, res, next) => {
   const author = movie.author
   //save to mongodb
   Movie.create(movie)
-    // .populate('director')
-    .then((movie) => {
-      return movie.populate('director').execPopulate()
-      })
     .then(movie =>res.status(201).json( { movie: movie } ))
     .catch(next)
     //
@@ -70,6 +63,7 @@ router.delete('/movies/:id', requireToken, (req, res, next) => {
       requireOwnership(req, movie)
       movie.deleteOne()})
     .then(() => res.sendStatus(204))
+
     //
     .catch(next)
 })

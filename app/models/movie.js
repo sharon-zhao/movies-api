@@ -9,8 +9,8 @@ const movieSchema =new Schema({
       required: true
     },
     director: {
-      type: Schema.Types.ObjectId,
-      ref: 'Person'
+      type: String,
+      required: true
     },
     author: {
       type:Schema.Types.ObjectId,

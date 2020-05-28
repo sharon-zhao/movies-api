@@ -96,7 +96,9 @@ router.patch('/comments/:movie_id/:comment_id', requireToken, removeBlanks, (req
   const movie_id = req.params.movie_id
   const comment_id = req.params.comment_id
   // get movie data from request
-  const commentData = req.body.comment
+  const commentData = req.body.comments
+  // console.log(commentData)
+
   // fetching movie by its id
   Movie.findById(movie_id)
     // handle 404 error if no movie found
@@ -105,9 +107,10 @@ router.patch('/comments/:movie_id/:comment_id', requireToken, removeBlanks, (req
     .then(movie => {
       // updating movie object
       // with movieData
+
       const comment = movie.comments.filter(comment => comment._id == comment_id)
       Object.assign(comment[0], commentData)
-      requireOwnership(req, comment)
+      // requireOwnership(req, comment)
       // save movie to mongodb
       return movie.save()
     })

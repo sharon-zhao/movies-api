@@ -7,6 +7,7 @@
     --data '{
       "comments": {
         "title": "'"${TITLE}"'",
-        "body": "'"${BODY}"'"
+        "body": "'"${BODY}"'",
+        "commenter": "'"${COMMENTER}"'"
       }
     }'
