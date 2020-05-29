@@ -96,7 +96,7 @@ router.patch('/comments/:movie_id/:comment_id', requireToken, removeBlanks, (req
   const movie_id = req.params.movie_id
   const comment_id = req.params.comment_id
   // get movie data from request
-  const commentData = req.body.comments
+  const commentData = req.body.comment
   // console.log(commentData)
 
   // fetching movie by its id
@@ -112,10 +112,14 @@ router.patch('/comments/:movie_id/:comment_id', requireToken, removeBlanks, (req
       Object.assign(comment[0], commentData)
       // requireOwnership(req, comment)
       // save movie to mongodb
+      console.log(movie)
       return movie.save()
     })
     // if successful return 204
-    .then(() => res.sendStatus(204))
+    .then((movie) => {
+      console.log(movie)
+      res.status(204).json({movie: movie.toObject()})})
+
     // on error go to next middleware
     .catch(next)
 })

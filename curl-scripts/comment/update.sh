@@ -5,7 +5,7 @@
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer ${TOKEN}" \
     --data '{
-      "comments": {
+      "comment": {
         "title": "'"${TITLE}"'",
         "body": "'"${BODY}"'",
         "commenter": "'"${COMMENTER}"'"
