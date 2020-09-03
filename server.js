@@ -3,9 +3,6 @@
 const multer = require('multer')
 const uploadRoutes = require('./app/routes/upload_routes')
 
-
-
-
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -21,7 +18,6 @@ const requestLogger = require('./lib/request_logger')
 
 const movieRoutes = require('./app/routes/movieRoutes')
 const commentRoutes = require('./app/routes/commentRoutes')
-const personRoutes = require('./app/routes/personRoutes')
 
 const db = require('./config/db')
 
@@ -70,8 +66,6 @@ app.use(requestLogger)
 // app.use(exampleRoutes)
 
 app.use(userRoutes)
-
-app.use(personRoutes)
 
 app.use(commentRoutes)
 

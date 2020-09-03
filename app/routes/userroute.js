@@ -19,6 +19,7 @@ router.post('/sign-in', (req, res, next) => {
   const credentials = req.body.credentials
   const email = credentials.email
   const password = credentials.password
+  
   let user
 
   // find a user based on the email
@@ -88,3 +89,5 @@ router.patch('/change-password' ,requireToken, (req, res, next) => {
     // pass any errors along to the error handler
     .catch(next)
 })
+
+module.exports = router

@@ -1,6 +1,7 @@
 'use strict'
 // requiring the mongoose library
 const mongoose = require('mongoose')
+// const commentsSchema = require('./comment')
 
 const Schema = mongoose.Schema
 
