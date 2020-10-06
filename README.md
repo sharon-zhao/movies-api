@@ -1,4 +1,4 @@
-# Application Title: Personal movie collection library, which can make you create update delete and show your movies. The reason why I wanted to do this project is that I like to see movies, especially the Marvel movies.
+# Application Title: Personal movie collection library, which can make you create update delete and show your movies.
 
 ## Important Links
 
@@ -8,7 +8,7 @@
 
 ## Planning Story
 
-This project looks not that difficult, but it contains a lot of tricky problems.
+The reason why I wanted to do this project is that I like to see movies, especially the Marvel movies. This project contains a lot of tricky problems.
 Fist, the methods upload delete of the comment are not similar as the methods of movie and person, since the comment is subelement of movie. All the action of comment should under the parent scope of movie, if you want to delete the comment only by id of comment, you have to loop the movies object then filter the comment id. However, we only learned how to use forEach in array, how to loop object is tough problem.
 Second, change the background using upload image is the other challenge. The images upload to s3 database, in the beginning I am not quite understand how to use this database, so I don't know how to get the data. I recheck the step of upload image to figure out how to use it then write the router of getting image on the back-end.
 
@@ -26,9 +26,6 @@ Second, change the background using upload image is the other challenge. The ima
 
 Add image on each book
 
-## Images
-
----
 
 #### Wireframe:
 - https://user-images.githubusercontent.com/62820094/82355432-3171a480-99d0-11ea-9d91-d8843d5f6db0.jpeg
