@@ -4,7 +4,7 @@ const mongooseBaseName = 'movies-api'
 
 // create the mongodb uri for development and test
 const database = {
-  // development: "mongodb+srv://heroku_qxdtrwmw:Zxr2303811992@cluster-qxdtrwmw.wmot7.mongodb.net/heroku_qxdtrwmw?retryWrites=true&w=majority",
+  // development: "mongodb+srv://heroku_qxdtrwmw:<password>@cluster-qxdtrwmw.wmot7.mongodb.net/heroku_qxdtrwmw?retryWrites=true&w=majority",
   development: `mongodb://localhost/${mongooseBaseName}-development`,
   test: `mongodb://localhost/${mongooseBaseName}-test`
 }
