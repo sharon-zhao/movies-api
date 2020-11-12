@@ -4,6 +4,7 @@ const mongooseBaseName = 'movies-api'
 
 // create the mongodb uri for development and test
 const database = {
+  // development: "mongodb+srv://heroku_qxdtrwmw:Zxr2303811992@cluster-qxdtrwmw.wmot7.mongodb.net/heroku_qxdtrwmw?retryWrites=true&w=majority",
   development: `mongodb://localhost/${mongooseBaseName}-development`,
   test: `mongodb://localhost/${mongooseBaseName}-test`
 }
@@ -14,6 +15,6 @@ const localDb = process.env.TESTENV ? database.test : database.development
 
 // Environment variable MONGODB_URI will be available in
 // heroku production evironment otherwise use test or development db
-const currentDb = process.env.MONGODB_URI || localDb
+const currentDb = process.env.DB_URI || localDb
 
 module.exports = currentDb
