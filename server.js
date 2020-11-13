@@ -20,7 +20,7 @@ const movieRoutes = require('./app/routes/movieRoutes')
 const commentRoutes = require('./app/routes/commentRoutes')
 
 const db = require('./config/db')
-const conncetDB = require('./config/Newdb')
+// const conncetDB = require('./config/Newdb')
 
 // require configured passport authentication middleware
 const auth = require('./lib/auth')
@@ -48,7 +48,6 @@ app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDe
 // define port for API to run on
 const port = process.env.PORT || serverDevPort
 
-conncetDB()
 // this middleware makes it so the client can use the Rails convention
 // of `Directorization: Token token=<token>` OR the Express convention of
 // `Directorization: Bearer <token>`
